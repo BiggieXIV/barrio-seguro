@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barrio Seguro - Realizar Reporte</title>
+    <!-- Hoja de Estilos Principal -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS (Mapa Interactivo) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+
+    <!-- Encabezado y Barra de Navegación -->
+    <header class="header-principal">
+        <div class="contenedor nav-contenedor">
+            <div class="logo">
+                <i class="fa-solid fa-tree-city logo-icono"></i>
+                <span class="logo-texto">Barrio <strong>Seguro</strong></span>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="reportes.html" class="active"><i class="fa-solid fa-bullhorn"></i> Reporte</a></li>
+                    <li><a href="quienes-somos.html"><i class="fa-solid fa-users"></i> Quienes Somos</a></li>
+                    <li><a href="contacto.html"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+
+            <button class="btn-menu-mobi" id="btnMenuMobile" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sección de Formulario de Reporte en Cuadro Diseñado -->
+    <main class="contenedor seccion-reporte">
+        
+        <!-- Tarjeta Principal del Formulario -->
+        <div class="tarjeta-formulario-cuadro">
+            
+            <!-- Encabezado del Cuadro -->
+            <div class="encabezado-cuadro">
+                <i class="fa-solid fa-clipboard-list icono-encabezado"></i>
+                <h2>Formulario de Reporte Ciudadano</h2>
+                <p>Completa la información para notificar el problema de tu comunidad directamente a la alcaldía.</p>
+            </div>
+
+            <!-- Cuerpo del Formulario -->
+            <form id="formReporte" class="form-estilizado">
+                
+                <!-- Tipo de Incidencia -->
+                <div class="campo-grupo">
+                    <label for="tipoIncidencia"><i class="fa-solid fa-triangle-exclamation"></i> Tipo de Incidencia / Problema *</label>
+                    <select id="tipoIncidencia" name="tipoIncidencia" required>
+                        <option value="" disabled selected>-- Seleccione el tipo de problema --</option>
+                        <option value="Calles en mal estado / Baches">Calles en mal estado / Baches</option>
+                        <option value="Alcantarillado dañado / Sin tapa">Alcantarillado dañado / Sin tapa</option>
+                        <option value="Fuga de agua potable">Fuga de agua potable</option>
+                        <option value="Fuga de aguas negras">Fuga de aguas negras</option>
+                        <option value="Basura en lugar no autorizado">Personas botando basura en lugar no autorizado</option>
+                        <option value="Árbol caído / En riesgo">Árbol caído / En riesgo de colapso</option>
+                        <option value="Inundación / Anegamiento">Inundación / Cauce obstruido</option>
+                    </select>
+                </div>
+
+                <!-- Datos del Denunciante -->
+                <div class="grid-dos-columnas">
+                    <div class="campo-grupo">
+                        <label for="nombre"><i class="fa-solid fa-user"></i> Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label for="telefono"><i class="fa-solid fa-phone"></i> Teléfono de Contacto *</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 88888888" required>
+                    </div>
+                </div>
+
+                <!-- Ubicación y Barrio -->
+                <div class="grid-dos-columnas">
+                    <div class="campo-grupo">
+                        <label for="barrio"><i class="fa-solid fa-location-dot"></i> Barrio / Comunidad *</label>
+                        <input type="text" id="barrio" name="barrio" placeholder="Ej. Barrio Camilo Ortega" required>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label for="coordenadas"><i class="fa-solid fa-map-location-dot"></i> Ubicación en Mapa *</label>
+                        <div class="input-con-boton">
+                            <input type="text" id="coordenadas" name="coordenadas" placeholder="Seleccione en el mapa" readonly required>
+                            <button type="button" id="btnAbrirMapa" class="btn-secundario-mapa">
+                                <i class="fa-solid fa-map-marked-alt"></i> Mapa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dirección Exacta / Punto de Referencia -->
+                <div class="campo-grupo">
+                    <label for="direccion"><i class="fa-solid fa-map-pin"></i> Dirección Exacta / Punto de Referencia *</label>
+                    <textarea id="direccion" name="direccion" rows="3" placeholder="Ej. De la pulpería El Socorro, 2 cuadras al sur, 1/2 cuadra abajo." required></textarea>
+                </div>
+
+                <!-- Subir Fotos / Archivos -->
+                <div class="campo-grupo">
+                    <label for="fotoReporte"><i class="fa-solid fa-camera"></i> Adjuntar Foto del Problema (Opcional)</label>
+                    <input type="file" id="fotoReporte" name="fotoReporte" accept="image/*" capture="environment">
+                    <small class="texto-ayuda">Puedes tomar una foto directa desde tu celular o adjuntar una imagen.</small>
+                </div>
+
+                <!-- Campo de Comentario / Descripción Adicional -->
+                <div class="campo-grupo">
+                     <label for="comentario"><i class="fa-solid fa-comment-dots"></i> Comentario / Detalles Adicionales (Opcional)</label>
+                    <textarea id="comentario" name="comentario" rows="3" placeholder="Ej. El agua está brotando fuerte desde la mañana y dificulta el paso de vehículos. Hay riesgo para los niños del sector."></textarea>
+                </div>
+
+                <!-- Botón de Envío Prominente -->
+                <div class="acciones-formulario">
+                    <button type="submit" id="btnEnviar" class="btn-enviar-reporte">
+                        <i class="fa-brands fa-whatsapp"></i> ENVIAR REPORTE AHORA
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+   <!-- Modal para Selección de Mapa Interactivo -->
+<div id="modalMapa" class="modal-mapa">
+    <div class="contenido-modal">
+        <div class="encabezado-modal">
+            <h3><i class="fa-solid fa-location-crosshairs"></i> Selecciona la Ubicación del Problema</h3>
+            <button id="btnCerrarMapa" class="btn-cerrar">&times;</button>
+        </div>
+        <div class="cuerpo-modal">
+            <p class="instruccion-mapa">Usa tu GPS actual o haz clic/arrastra el marcador rojo al punto exacto:</p>
+            
+            <!-- NUEVO BOTÓN DE GPS -->
+            <div style="margin-bottom: 12px;">
+                <button type="button" id="btnMiUbicacion" class="btn-gps-actual">
+                    <i class="fa-solid fa-location-arrow"></i> Usar mi ubicación GPS actual
+                </button>
+            </div>
+
+            <div id="mapaContenedor"></div>
+        </div>
+        <div class="pie-modal">
+            <button type="button" id="btnConfirmarUbicacion" class="btn-confirmar-mapa">
+                <i class="fa-solid fa-check"></i> Confirmar Esta Ubicación
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Pie de Página -->
+    <footer class="footer-principal">
+        <div class="contenedor footer-grid">
+            <div class="footer-info">
+                <h4>Barrio Seguro</h4>
+                <p>Plataforma comunitaria para el reporte y mejora continua de nuestros barrios e infraestructura pública.</p>
+            </div>
+            <div class="footer-enlaces">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="reportes.html">Realizar Reporte</a></li>
+                    <li><a href="quienes-somos.html">Quienes Somos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-contacto">
+                <h4>Atención</h4>
+                <p><i class="fa-solid fa-phone"></i> Línea Comunal: +505 8888-8888</p>
+                <p><i class="fa-solid fa-location-dot"></i> Nicaragua</p>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2026 Barrio Seguro - Proyecto de Desarrollo Tecnológico Comunitario.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/mapa.js"></script>
+    <script src="js/reporte.js"></script>
+</body>
+</html>

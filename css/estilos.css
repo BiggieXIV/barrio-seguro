@@ -1,0 +1,707 @@
+/* ==========================================================================
+   BARRIO SEGURO - ESTILOS PRINCIPALES
+   Paleta: Azul Comunitario, Verde Naturaleza Suave, Celeste Agua
+   ========================================================================== */
+
+/* 1. VARIABLES Y REGLAS GENERALES */
+:root {
+    --azul-comunitario: #1B4D3E;      /* Verde/Azul marino profundo */
+    --azul-oscuro: #0E3328;           /* Tono oscuro para headers/footers */
+    --verde-suave: #2E8B57;           /* Verde naturaleza para botones clave */
+    --verde-hover: #236B43;           /* Verde más oscuro para hover */
+    --celeste-agua: #E0F2FE;          /* Fondo suave y limpio */
+    --celeste-borde: #93C5FD;         /* Bordes de tarjetas e inputs */
+    --verde-fondo: #F4FBF7;           /* Fondo principal de las páginas */
+    --texto-principal: #1F2937;       /* Gris oscuro para lectura cómoda */
+    --texto-mutado: #6B7280;          /* Gris medio para descripciones */
+    --blanco: #FFFFFF;
+    --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --fuente-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --transicion: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-base);
+    background-color: var(--verde-fondo);
+    color: var(--texto-principal);
+    line-height: 1.6;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transicion);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 2. ENCABEZADO Y NAVEGACIÓN */
+.header-principal {
+    background-color: var(--azul-comunitario);
+    color: var(--blanco);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.nav-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.5rem;
+}
+
+.logo-icono {
+    color: #4ADE80; /* Verde brillante de acento */
+    font-size: 1.8rem;
+}
+
+.logo-texto strong {
+    color: #38BDF8; /* Celeste de acento */
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 1.8rem;
+}
+
+.nav-menu a {
+    color: var(--blanco);
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #38BDF8;
+}
+
+.btn-menu-mobi {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--blanco);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* 3. CARRUSEL DE IMÁGENES (INDEX) */
+.seccion-carrusel {
+    margin-bottom: 3rem;
+}
+
+.carrusel-contenedor {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+    background-color: var(--azul-oscuro);
+}
+
+.carrusel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carrusel-slide.active {
+    opacity: 1;
+}
+
+.carrusel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.65);
+}
+
+.carrusel-caption {
+    position: absolute;
+    bottom: 20%;
+    left: 8%;
+    right: 8%;
+    color: var(--blanco);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+.carrusel-caption h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #E0F2FE;
+}
+
+.carrusel-caption p {
+    font-size: 1.2rem;
+}
+
+.carrusel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(27, 77, 62, 0.7);
+    color: var(--blanco);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transicion);
+    z-index: 10;
+}
+
+.carrusel-control:hover {
+    background: var(--verde-suave);
+}
+
+.carrusel-control.prev { left: 20px; }
+.carrusel-control.next { right: 20px; }
+
+.carrusel-puntos {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.punto {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.punto.active {
+    background: var(--verde-suave);
+    width: 30px;
+    border-radius: 10px;
+}
+
+/* 4. BANNER LLAMADA A LA ACCIÓN (HAZ TU REPORTE) */
+.seccion-call-action {
+    margin-bottom: 4rem;
+}
+
+.tarjeta-banner {
+    background: var(--blanco);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: var(--sombra-media);
+    border: 1px solid var(--celeste-borde);
+}
+
+.banner-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-contenido {
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--blanco) 0%, var(--celeste-agua) 100%);
+}
+
+.badge-atencion {
+    display: inline-block;
+    background-color: var(--azul-comunitario);
+    color: var(--blanco);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.banner-contenido h2 {
+    color: var(--azul-comunitario);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.banner-contenido p {
+    color: var(--texto-mutado);
+    margin-bottom: 2rem;
+}
+
+.btn-reportar-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background-color: var(--verde-suave);
+    color: var(--blanco);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
+}
+
+.btn-reportar-principal:hover {
+    background-color: var(--verde-hover);
+    transform: translateY(-2px);
+}
+
+/* 5. TARJETAS DE CATEGORÍAS */
+.seccion-categorias {
+    margin-bottom: 4rem;
+}
+
+.titulo-seccion {
+    text-align: center;
+    color: var(--azul-comunitario);
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.tarjeta-categoria {
+    background: var(--blanco);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid rgba(147, 197, 253, 0.4);
+    transition: var(--transicion);
+}
+
+.tarjeta-categoria:hover {
+    transform: translateY(-5px);
+    border-color: var(--verde-suave);
+}
+
+.icono-cat {
+    font-size: 2.5rem;
+    color: var(--verde-suave);
+    margin-bottom: 1rem;
+}
+
+.tarjeta-categoria h4 {
+    color: var(--azul-comunitario);
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-categoria p {
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+}
+
+/* 6. FORMULARIO DE REPORTES (REPORTES.HTML) */
+.seccion-reporte {
+    padding: 3rem 0;
+}
+
+.encabezado-pagina {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.encabezado-pagina h2 {
+    color: var(--azul-comunitario);
+    font-size: 2.2rem;
+}
+
+.encabezado-pagina p {
+    color: var(--texto-mutado);
+    max-width: 650px;
+    margin: 0.5rem auto 0;
+}
+
+.contenedor-formulario-reporte {
+    background: var(--blanco);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--sombra-media);
+    border: 1px solid var(--celeste-borde);
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.form-estilizado .campo-grupo {
+    margin-bottom: 1.5rem;
+}
+
+.grid-dos-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: var(--azul-comunitario);
+    margin-bottom: 0.5rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid var(--celeste-borde);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--verde-fondo);
+    color: var(--texto-principal);
+    transition: var(--transicion);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--verde-suave);
+    background-color: var(--blanco);
+    box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.15);
+}
+
+.input-con-boton {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-secundario-mapa {
+    background-color: var(--azul-comunitario);
+    color: var(--blanco);
+    border: none;
+    padding: 0 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: var(--transicion);
+}
+
+.btn-secundario-mapa:hover {
+    background-color: var(--azul-oscuro);
+}
+
+.texto-ayuda {
+    display: block;
+    color: var(--texto-mutado);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.acciones-formulario {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-enviar-whatsapp {
+    width: 100%;
+    background-color: #25D366; /* Verde Oficial de WhatsApp */
+    color: var(--blanco);
+    border: none;
+    padding: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    transition: var(--transicion);
+}
+
+.btn-enviar-whatsapp:hover {
+    background-color: #1DA851;
+    transform: translateY(-2px);
+}
+
+/* 7. MODAL Y MAPA INTERACTIVO (LEAFLET) */
+.modal-mapa {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-mapa.active {
+    display: flex;
+}
+
+.contenido-modal {
+    background: var(--blanco);
+    width: 90%;
+    max-width: 800px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--sombra-media);
+}
+
+.encabezado-modal {
+    background-color: var(--azul-comunitario);
+    color: var(--blanco);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-cerrar {
+    background: none;
+    border: none;
+    color: var(--blanco);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.cuerpo-modal {
+    padding: 1.2rem;
+}
+
+.instruccion-mapa {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    color: var(--texto-mutado);
+}
+
+#mapaContenedor {
+    width: 100%;
+    height: 380px;
+    border-radius: 8px;
+    border: 1px solid var(--celeste-borde);
+}
+
+.pie-modal {
+    padding: 1rem 1.5rem;
+    background: var(--verde-fondo);
+    text-align: right;
+}
+
+.btn-confirmar-mapa {
+    background-color: var(--verde-suave);
+    color: var(--blanco);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* 8. PIE DE PÁGINA (FOOTER) */
+.footer-principal {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    padding-top: 3rem;
+    margin-top: 4rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.footer-info h4, .footer-enlaces h4, .footer-contacto h4 {
+    color: #38BDF8;
+    margin-bottom: 1rem;
+}
+
+.footer-enlaces ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-enlaces a:hover {
+    color: var(--verde-suave);
+}
+
+.footer-copy {
+    background-color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 9. RESPONSIVE DESIGN (MÓVILES Y TABLETS) */
+@media (max-width: 868px) {
+    .tarjeta-banner {
+        grid-template-columns: 1fr;
+    }
+    
+    .banner-imagen {
+        height: 250px;
+    }
+
+    .grid-dos-columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-menu {
+        display: none; /* Se activa dinámicamente con JS */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--azul-comunitario);
+        padding: 1rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .btn-menu-mobi {
+        display: block;
+    }
+}
+/* Estilos para el Cuadro/Tarjeta del Formulario */
+.tarjeta-formulario-cuadro {
+    background: var(--blanco);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border: 2px solid var(--celeste-borde);
+    max-width: 850px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.encabezado-cuadro {
+    background: linear-gradient(135deg, var(--azul-comunitario) 0%, #153E32 100%);
+    color: var(--blanco);
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+.icono-encabezado {
+    font-size: 3rem;
+    color: #4ADE80;
+    margin-bottom: 0.8rem;
+}
+
+.encabezado-cuadro h2 {
+    font-size: 2rem;
+    color: #E0F2FE;
+    margin-bottom: 0.5rem;
+}
+
+.encabezado-cuadro p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+}
+
+.form-estilizado {
+    padding: 2.5rem;
+}
+
+/* Botón de Enviar Reporte */
+.btn-enviar-reporte {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
+    color: var(--blanco);
+    border: none;
+    padding: 1.2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-enviar-reporte:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+/* Estilo específico para las áreas de texto (Dirección y Comentario) */
+textarea#comentario,
+textarea#direccion {
+    resize: vertical;
+    min-height: 90px;
+    font-family: var(--fuente-base);
+    line-height: 1.5;
+}
+.btn-gps-actual {
+    width: 100%;
+    background-color: var(--verde-suave);
+    color: var(--blanco);
+    border: none;
+    padding: 0.7rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transicion);
+}
+.btn-gps-actual:hover {
+    background-color: var(--verde-hover);
+}

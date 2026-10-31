@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Alerta - Inicio</title>
+    <!-- Hoja de Estilos Principal -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <!-- Iconos de FontAwesome (para iconos de WhatsApp, reporte, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Encabezado y Barra de Navegación -->
+    <header class="header-principal">
+        <div class="contenedor nav-contenedor">
+            <div class="logo">
+                <i class="fa-solid fa-tree-city logo-icono"></i>
+                <span class="logo-texto">Geo <strong>Alerta</strong></span>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="reportes.html"><i class="fa-solid fa-bullhorn"></i> Reporte</a></li>
+                    <li><a href="quienes-somos.html"><i class="fa-solid fa-users"></i> Quienes Somos</a></li>
+                    <li><a href="contacto.html"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Botón Menú Hamburguesa para Móviles -->
+            <button class="btn-menu-mobi" id="btnMenuMobile" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sección Principal: Carrusel de 5 Fotos -->
+    <main>
+        <section class="seccion-carrusel">
+            <div class="carrusel-contenedor">
+                <!-- Diapositiva 1 -->
+                <div class="carrusel-slide active">
+                    <img src="img/carrusel1.jpg" alt="Calles y alcantarillado en la comunidad">
+                    <div class="carrusel-caption">
+                        <h2>Reporta Calles en Mal Estado</h2>
+                        <p>Fugas de agua, baches y alcantarillados dañados en tu barrio.</p>
+                    </div>
+                </div>
+
+                <!-- Diapositiva 2 -->
+                <div class="carrusel-slide">
+                    <img src="img/carrusel2.jpg" alt="Basura en lugares no autorizados">
+                    <div class="carrusel-caption">
+                        <h2>Mantengamos Limpia Nuestra Comunidad</h2>
+                        <p>Denuncia el vertido ilegal de basura de forma rápida.</p>
+                    </div>
+                </div>
+
+                <!-- Diapositiva 3 -->
+                <div class="carrusel-slide">
+                    <img src="img/carrusel3.jpg" alt="Árboles caídos e incidencias">
+                    <div class="carrusel-caption">
+                        <h2>Atención de Árboles Caídos</h2>
+                        <p>Ayúdanos a prevenir riesgos y limpiar las vías públicas.</p>
+                    </div>
+                </div>
+
+                <!-- Diapositiva 4 -->
+                <div class="carrusel-slide">
+                    <img src="img/carrusel4.jpg" alt="Inundaciones en temporada de lluvia">
+                    <div class="carrusel-caption">
+                        <h2>Alertas de Inundación</h2>
+                        <p>Reporta puntos críticos durante las lluvias para respuesta oportuna.</p>
+                    </div>
+                </div>
+
+                <!-- Diapositiva 5 -->
+                <div class="carrusel-slide">
+                    <img src="img/carrusel5.jpg" alt="Comunidad unida y limpia">
+                    <div class="carrusel-caption">
+                        <h2>Unidos por un Barrio Mejor</h2>
+                        <p>Tu reporte ciudadano transforma nuestro entorno.</p>
+                    </div>
+                </div>
+
+                <!-- Botones de Control del Carrusel -->
+                <button class="carrusel-control prev" id="btnPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="carrusel-control next" id="btnNext"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <!-- Indicadores de Puntos -->
+                <div class="carrusel-puntos" id="carruselPuntos">
+                    <span class="punto active" data-index="0"></span>
+                    <span class="punto" data-index="1"></span>
+                    <span class="punto" data-index="2"></span>
+                    <span class="punto" data-index="3"></span>
+                    <span class="punto" data-index="4"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner de Acción Principal: "Haz Tu Reporte" -->
+        <section class="seccion-call-action contenedor">
+            <div class="tarjeta-banner">
+                <div class="banner-imagen">
+                    <img src="img/haz-tu-reporte.jpeg" alt="Haz tu reporte comunitario aquí">
+                </div>
+                <div class="banner-contenido">
+                    <span class="badge-atencion">Atención Ciudadana</span>
+                    <h2>¡HAZ TU REPORTE AHORA!</h2>
+                    <p>
+                        ¿Detectaste un bache, fuga de agua, basura acumulada, árbol caído o inundación en tu zona? 
+                        Envía tu informe directo con tu ubicación exacta para darle seguimiento inmediato.
+                    </p>
+                    <a href="reportes.html" class="btn-reportar-principal">
+                        <i class="fa-solid fa-paper-plane"></i> Crear Mi Reporte
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumen de Tipos de Incidencias que se Atienden -->
+        <section class="seccion-categorias contenedor">
+            <h3 class="titulo-seccion">Incidencias Comunitarias que Puedes Reportar</h3>
+            <div class="grid-categorias">
+                <div class="tarjeta-categoria">
+                    <i class="fa-solid fa-road-spikes icono-cat"></i>
+                    <h4>Calles y Fugas</h4>
+                    <p>Baches, alcantarillas dañadas, fugas de agua potable o aguas negras.</p>
+                </div>
+                <div class="tarjeta-categoria">
+                    <i class="fa-solid fa-trash-can icono-cat"></i>
+                    <h4>Desechos Ilegales</h4>
+                    <p>Personas o carretones botando basura en lugares no autorizados.</p>
+                </div>
+                <div class="tarjeta-categoria">
+                    <i class="fa-solid fa-tree icono-cat"></i>
+                    <h4>Árboles Caídos</h4>
+                    <p>Ramas u árboles colapsados que obstaculicen el paso o la energía.</p>
+                </div>
+                <div class="tarjeta-categoria">
+                    <i class="fa-solid fa-cloud-showers-heavy icono-cat"></i>
+                    <h4>Inundaciones</h4>
+                    <p>Acumulación de agua en cauces, calles o zonas vulnerables.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="footer-principal">
+        <div class="contenedor footer-grid">
+            <div class="footer-info">
+                <h4>Barrio Seguro</h4>
+                <p>Plataforma comunitaria para el reporte y mejora continua de nuestros barrios e infraestructura pública.</p>
+            </div>
+            <div class="footer-enlaces">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="reportes.html">Realizar Reporte</a></li>
+                    <li><a href="quienes-somos.html">Quienes Somos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-contacto">
+                <h4>Atención</h4>
+                <p><i class="fa-solid fa-phone"></i> Llinea Comunal: +505 8145-1649</p>
+                <p><i class="fa-solid fa-location-dot"></i> Nicaragua</p>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2026 Barrio Seguro - Proyecto de Desarrollo Tecnológico Comunitario.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/carrusel.js"></script>
+</body>
+</html>
